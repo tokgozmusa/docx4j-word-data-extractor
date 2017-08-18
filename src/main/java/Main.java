@@ -24,7 +24,7 @@ public class Main
         BasicConfigurator.configure();
 
         // set input file name and file paths for the input and output
-        String inputFileName = "example-file-0.docx";
+        String inputFileName = "example-file-1.docx";
         String inputFilePath = System.getProperty("user.dir") + "/docx-files/" + inputFileName;
         String outputFilePath = System.getProperty("user.dir") + "/output-files/";
 

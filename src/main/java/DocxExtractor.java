@@ -137,6 +137,25 @@ public class DocxExtractor extends AbstractSample
 
 
     /**
+     *
+     * @return
+     */
+    public String getText()
+    {
+        if(wordMLPackage == null)
+        {
+            throw new NullPointerException();
+        }
+
+        MainDocumentPart documentPart = wordMLPackage.getMainDocumentPart();
+        org.docx4j.wml.Document wmlDocumentEl = (org.docx4j.wml.Document) documentPart.getJaxbElement();
+        Body body = wmlDocumentEl.getBody();
+
+        return getTextOfObject(body);
+    }
+
+
+    /**
      * @return raw XML of the docx file as string
      */
     public String getRawXML()

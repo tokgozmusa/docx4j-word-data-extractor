@@ -24,7 +24,7 @@ public class Main
         BasicConfigurator.configure();
 
         // set input file name and file paths for the input and output
-        String inputFileName = "example-file-1.docx";
+        String inputFileName = "example-file-2.docx";
         String inputFilePath = System.getProperty("user.dir") + "/docx-files/" + inputFileName;
         String outputFilePath = System.getProperty("user.dir") + "/output-files/";
 
@@ -47,6 +47,10 @@ public class Main
         saveStringToFile(docxExtractor.getRawXML(), outputFilePath + "raw-xml-" + inputFileName + ".xml");
         saveStringToFile(docxExtractor.getObjectSchema(), outputFilePath + "object-schema-" + inputFileName + ".txt");
         docxExtractor.parse();
+
+        System.out.println("-----------");
+
+        System.out.println(docxExtractor.getText());
     }
 
 

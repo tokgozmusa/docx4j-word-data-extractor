@@ -14,9 +14,9 @@ public class MathFormulaFormatTransformation
 
 
     /**
-     *
      * @param xmlString
      * @param xslFileName
+     *
      * @return
      */
     private static String makeConversionWithXSLFile(String xmlString, String xslFileName)
@@ -42,8 +42,8 @@ public class MathFormulaFormatTransformation
 
 
     /**
-     *
      * @param ommlString
+     *
      * @return
      */
     public static String OMML2MML(String ommlString)
@@ -53,8 +53,8 @@ public class MathFormulaFormatTransformation
 
 
     /**
-     *
      * @param mmlString
+     *
      * @return
      */
     public static String MML2TeX(String mmlString)
@@ -64,8 +64,8 @@ public class MathFormulaFormatTransformation
 
 
     /**
-     *
      * @param ommlString
+     *
      * @return
      */
     public static String OMML2TeX(String ommlString)

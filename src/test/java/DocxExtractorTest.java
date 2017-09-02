@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 public class DocxExtractorTest
 {
     DocxExtractor docxExtractor = null;
+
     @Before
     public void setUp() throws Exception
     {

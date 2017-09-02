@@ -15,6 +15,7 @@ public class Main
      * Main method
      *
      * @param args
+     *
      * @throws Exception
      */
     public static void main(String[] args) throws Exception
@@ -55,9 +56,9 @@ public class Main
 
 
     /**
-     *
      * @param inputString
      * @param fileName
+     *
      * @throws FileNotFoundException
      */
     public static void saveStringToFile(String inputString, String fileName) throws FileNotFoundException

@@ -137,7 +137,6 @@ public class DocxExtractor extends AbstractSample
 
 
     /**
-     *
      * @return
      */
     public String getText()

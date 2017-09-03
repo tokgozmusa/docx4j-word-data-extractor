@@ -33,7 +33,7 @@ public class MathFormulaFormatTransformation
                 new javax.xml.transform.stream.StreamResult(writer));
             result = writer.toString();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }

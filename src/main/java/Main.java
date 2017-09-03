@@ -31,9 +31,9 @@ public class Main
 
         // check whether output directory exits, if it does not create it
         File file = new File(outputFilePath);
-        if(!file.exists())
+        if (!file.exists())
         {
-            if(file.mkdir())
+            if (file.mkdir())
             {
                 System.out.println("Output directory is created successfully.");
             }

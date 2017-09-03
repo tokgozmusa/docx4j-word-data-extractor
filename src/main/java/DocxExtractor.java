@@ -43,7 +43,7 @@ public class DocxExtractor extends AbstractSample
         {
             this.loadDocument(inputFile);
         }
-        catch(Docx4JException e)
+        catch (Docx4JException e)
         {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class DocxExtractor extends AbstractSample
         {
             this.loadDocument(inputStream);
         }
-        catch(Docx4JException e)
+        catch (Docx4JException e)
         {
             e.printStackTrace();
         }
@@ -97,18 +97,18 @@ public class DocxExtractor extends AbstractSample
     private List<Object> getAllElementFromObject(Object obj, Class<?> toSearch)
     {
         List<Object> result = new ArrayList<Object>();
-        if(obj instanceof JAXBElement)
+        if (obj instanceof JAXBElement)
         {
             obj = ((JAXBElement<?>) obj).getValue();
         }
-        if(obj.getClass().equals(toSearch))
+        if (obj.getClass().equals(toSearch))
         {
             result.add(obj);
         }
-        else if(obj instanceof ContentAccessor)
+        else if (obj instanceof ContentAccessor)
         {
             List<?> children = ((ContentAccessor) obj).getContent();
-            for(Object child : children)
+            for (Object child : children)
             {
                 result.addAll(getAllElementFromObject(child, toSearch));
             }
@@ -127,7 +127,7 @@ public class DocxExtractor extends AbstractSample
         // object can be org.docx4j.wml.P, org.docx4j.wml.R etc
         List<Object> texts = getAllElementFromObject(object, Text.class);
         String result = "";
-        for(Object o : texts)
+        for (Object o : texts)
         {
             Text t = (Text) o;
             result += t.getValue();
@@ -141,7 +141,7 @@ public class DocxExtractor extends AbstractSample
      */
     public String getText()
     {
-        if(wordMLPackage == null)
+        if (wordMLPackage == null)
         {
             throw new NullPointerException();
         }
@@ -159,7 +159,7 @@ public class DocxExtractor extends AbstractSample
      */
     public String getRawXML()
     {
-        if(wordMLPackage == null)
+        if (wordMLPackage == null)
         {
             throw new NullPointerException();
         }
@@ -175,7 +175,7 @@ public class DocxExtractor extends AbstractSample
      */
     public String getObjectSchema() throws Docx4JException
     {
-        if(wordMLPackage == null)
+        if (wordMLPackage == null)
         {
             throw new NullPointerException();
         }
@@ -208,13 +208,13 @@ public class DocxExtractor extends AbstractSample
                 {
                     indent += "    ";
                     List children = getChildren(parent);
-                    if(children != null)
+                    if (children != null)
                     {
-                        for(Object o : children)
+                        for (Object o : children)
                         {
                             o = XmlUtils.unwrap(o);
                             this.apply(o);
-                            if(this.shouldTraverse(o))
+                            if (this.shouldTraverse(o))
                             {
                                 walkJAXBElements(o);
                             }
@@ -238,7 +238,7 @@ public class DocxExtractor extends AbstractSample
      */
     public void parse() throws Exception
     {
-        if(wordMLPackage == null)
+        if (wordMLPackage == null)
         {
             throw new NullPointerException();
         }
@@ -253,14 +253,14 @@ public class DocxExtractor extends AbstractSample
             {
                 public List<Object> apply(Object o)
                 {
-                    if(o instanceof org.docx4j.wml.P)
+                    if (o instanceof org.docx4j.wml.P)
                     {
                         org.docx4j.wml.P p = (org.docx4j.wml.P) o;
 
                         // bullet - enumeration - numbering
-                        if(p.getPPr() != null && p.getPPr().getPStyle() != null)
+                        if (p.getPPr() != null && p.getPPr().getPStyle() != null)
                         {
-                            if(p.getPPr().getPStyle().getVal().equals("ListeParagraf"))
+                            if (p.getPPr().getPStyle().getVal().equals("ListeParagraf"))
                             {
                                 // TODO
                                 int paragraphID = p.getPPr().getNumPr().getNumId().getVal().intValue();
@@ -269,12 +269,12 @@ public class DocxExtractor extends AbstractSample
                         }
                         System.out.println("-----NEW PARAGRAPH-----");
                     }
-                    else if(o instanceof org.docx4j.wml.R)
+                    else if (o instanceof org.docx4j.wml.R)
                     {
                         org.docx4j.wml.R r = (org.docx4j.wml.R) o;
 
                         // check if there is bold text
-                        if(r.getRPr() != null && r.getRPr().getB() != null)
+                        if (r.getRPr() != null && r.getRPr().getB() != null)
                         {
                             // TODO
                             boolean isBold = r.getRPr().getB().isVal();
@@ -283,13 +283,13 @@ public class DocxExtractor extends AbstractSample
                             System.out.println(getTextOfBold);
                         }
                     }
-                    else if(o instanceof Text)
+                    else if (o instanceof Text)
                     {
                         // TODO
                         String text = ((Text) o).getValue();
                         System.out.println(text);
                     }
-                    else if(o instanceof CTOMath)
+                    else if (o instanceof CTOMath)
                     {
                         // make prettyPrint false to keep it one line
                         boolean prettyPrint = false;
@@ -299,7 +299,7 @@ public class DocxExtractor extends AbstractSample
                             "oMath",
                             CTOMath.class);
                         String teXFormat = MathFormulaFormatTransformation.OMML2TeX(formula);
-                        if(teXFormat != null && !teXFormat.equals(""))
+                        if (teXFormat != null && !teXFormat.equals(""))
                         {
                             // adapt teXFormat formula to our rich-text editor
                             teXFormat = teXFormat.substring(2, teXFormat.length() - 1);
@@ -308,7 +308,7 @@ public class DocxExtractor extends AbstractSample
                             System.out.println(teXFormat);
                         }
                     }
-                    else if(o instanceof Drawing)
+                    else if (o instanceof Drawing)
                     {
                         System.out.println("<<There is a picture here!!!>>");
                     }
@@ -323,13 +323,13 @@ public class DocxExtractor extends AbstractSample
                 public void walkJAXBElements(Object parent)
                 {
                     List children = getChildren(parent);
-                    if(children != null)
+                    if (children != null)
                     {
-                        for(Object o : children)
+                        for (Object o : children)
                         {
                             o = XmlUtils.unwrap(o);
                             this.apply(o);
-                            if(this.shouldTraverse(o))
+                            if (this.shouldTraverse(o))
                             {
                                 walkJAXBElements(o);
                             }

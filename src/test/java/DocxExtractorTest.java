@@ -33,7 +33,7 @@ public class DocxExtractorTest
     @Test
     public void getText() throws Exception
     {
-        assertEquals("Hello world! This is a test file.", docxExtractor.getText());
+        assertEquals("Hello world! This is a test file. test", docxExtractor.getText());
     }
 
     @Test

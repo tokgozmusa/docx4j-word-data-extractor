@@ -1,20 +1,18 @@
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
+public class DocxExtractorTest {
 
-import static org.junit.Assert.*;
-
-public class DocxExtractorTest
-{
     DocxExtractor docxExtractor = null;
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         // configure log4j
         PropertyConfigurator.configure("log4j.properties");
         BasicConfigurator.configure();
@@ -26,29 +24,23 @@ public class DocxExtractorTest
     }
 
     @After
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
     }
 
     @Test
-    public void getText() throws Exception
-    {
+    public void getText() throws Exception {
         assertEquals("Hello world! This is a test file.", docxExtractor.getText());
     }
 
     @Test
-    public void getRawXML() throws Exception
-    {
+    public void getRawXML() throws Exception {
     }
 
     @Test
-    public void getObjectSchema() throws Exception
-    {
+    public void getObjectSchema() throws Exception {
     }
 
     @Test
-    public void parse() throws Exception
-    {
+    public void parse() throws Exception {
     }
-
 }

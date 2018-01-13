@@ -7,10 +7,12 @@ import java.io.StringWriter;
 /**
  * @author tokgozmusa
  */
-public class MathFormulaFormatTransformation
-{
-    private final static String OMML2MML_XSL_FILE_NAME = System.getProperty("user.dir") + "/xsl-files/omml2mml.xsl";
-    private final static String MML2TEX_XSL_FILE_NAME = System.getProperty("user.dir") + "/xsl-files/mmltex.xsl";
+public class MathFormulaFormatTransformation {
+
+    private final static String OMML2MML_XSL_FILE_NAME =
+        System.getProperty("user.dir") + "/xsl-files/omml2mml.xsl";
+    private final static String MML2TEX_XSL_FILE_NAME =
+        System.getProperty("user.dir") + "/xsl-files/mmltex.xsl";
 
 
     /**
@@ -19,22 +21,19 @@ public class MathFormulaFormatTransformation
      *
      * @return
      */
-    private static String makeConversionWithXSLFile(String xmlString, String xslFileName)
-    {
+    private static String makeConversionWithXSLFile(String xmlString, String xslFileName) {
         String result = "";
-        try
-        {
+        try {
             StringReader reader = new StringReader(xmlString);
             StringWriter writer = new StringWriter();
             TransformerFactory tFactory = TransformerFactory.newInstance();
-            Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource(xslFileName));
+            Transformer transformer = tFactory
+                .newTransformer(new javax.xml.transform.stream.StreamSource(xslFileName));
             transformer.transform(
                 new javax.xml.transform.stream.StreamSource(reader),
                 new javax.xml.transform.stream.StreamResult(writer));
             result = writer.toString();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -46,8 +45,7 @@ public class MathFormulaFormatTransformation
      *
      * @return
      */
-    public static String OMML2MML(String ommlString)
-    {
+    public static String OMML2MML(String ommlString) {
         return makeConversionWithXSLFile(ommlString, OMML2MML_XSL_FILE_NAME);
     }
 
@@ -57,8 +55,7 @@ public class MathFormulaFormatTransformation
      *
      * @return
      */
-    public static String MML2TeX(String mmlString)
-    {
+    public static String MML2TeX(String mmlString) {
         return makeConversionWithXSLFile(mmlString, MML2TEX_XSL_FILE_NAME);
     }
 
@@ -68,8 +65,7 @@ public class MathFormulaFormatTransformation
      *
      * @return
      */
-    public static String OMML2TeX(String ommlString)
-    {
+    public static String OMML2TeX(String ommlString) {
         return MML2TeX(OMML2MML(ommlString));
     }
 }

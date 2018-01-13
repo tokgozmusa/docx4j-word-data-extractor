@@ -5,3 +5,6 @@
 Extract data from word documents with using [docx4j](https://www.docx4java.org/trac/docx4j)
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/tokgozmusa)
+
+#### Code Style
+https://github.com/google/styleguide - `intellij-java-google-style.xml`
